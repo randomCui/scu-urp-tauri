@@ -1,0 +1,27 @@
+{
+  "name": "scu_urp_tauri",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^1.2.0",
+    "element-plus": "^2.3.3",
+    "less": "^4.1.3",
+    "pinia": "^2.0.35",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.2.3",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "unplugin-auto-import": "^0.15.3",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^4.2.1"
+  }
+}
