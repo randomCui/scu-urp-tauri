@@ -1,5 +1,6 @@
-// export const domain = "http://202.115.47.141";
-export const domain = "http://192.168.31.196:4523/m1/2497359-0-default";
+// export const domain = "http://202.115.47.141:4523/m1/2497359-0-default";
+// export const domain = "http://192.168.31.196:4523/m1/2497359-0-default";
+export const domain = "http://127.0.0.1:4523/m1/2497359-0-default";
 // 教务系统登录入口
 export const jwc_entry_url = domain + "/login";
 // 教务系统验证码获取
@@ -33,7 +34,3 @@ export const http_head = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 
 
 export const zhjwjs_url = "http://zhjwjs.scu.edu.cn/teacher/personalSenate/giveLessonInfo/thisSemesterClassSchedule/indexPublic";
 export const zhjwjs_search_url = "http://zhjwjs.scu.edu.cn/teacher/personalSenate/giveLessonInfo/thisSemesterClassSchedule/getCourseArragementPublic";
-
-
-let JSESSIONID = "";
-let isLogin = false;
