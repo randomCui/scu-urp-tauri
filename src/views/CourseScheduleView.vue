@@ -48,7 +48,7 @@
       </el-popover>
     </el-col>
   </el-row>
-  <el-row align="middle" gutter="20" style="margin-bottom: 20px" >
+  <el-row align="middle" :gutter=20 style="margin-bottom: 20px" >
     <el-col :span="8">
       <el-input
         readonly="readonly"
@@ -266,8 +266,7 @@
 import{
   Warning,
 }from "@element-plus/icons-vue";
-import {useCounterStore} from "../store/selectCourseStore.js";
-import {useSchedulerStore} from "../store/courseSchedulerCoures.js";
+import {useCourseStore} from "../store/courseStore.js";
 export default {
   name: "CourseScheduleView",
   components:{
@@ -343,8 +342,8 @@ export default {
       //   console.log(json)
       //   this.course_list = json;
       // });
-      const ss = useSchedulerStore()
-      this.course_list =  ss.scheduledList;
+      const ss = useCourseStore()
+      this.course_list =  ss.scheduleListAll;
       console.log(this.course_list);
     },
     canDoSubmit(course_ID){
@@ -378,6 +377,10 @@ export default {
 
   }
 };
+</script>
+
+<script setup>
+const store = useCourseStore();
 </script>
 
 <style scoped>
