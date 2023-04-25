@@ -10,20 +10,20 @@
       </el-button-group>
     </el-col>
     <el-col :span="6">
-      <el-button :disabled="this.course_select_status !== 0">
+      <el-button :disabled="this.course_select_status !== 0" @click="convert_all_course_to_formal_state()">
         全部转换为正选课程
       </el-button>
       <el-popover
-        placement="bottom"
-        :width="300"
-        trigger="hover"
-        content="该课程非正选阶段选中"
-        on
+          placement="bottom"
+          :width="300"
+          trigger="hover"
+          content="该课程非正选阶段选中"
+          on
       >
         <template #reference>
-            <el-icon>
-              <Warning/>
-            </el-icon>
+          <el-icon>
+            <Warning/>
+          </el-icon>
         </template>
         <el-space direction="vertical" alignment="flex-start">
           <el-text v-if="this.course_select_status=== 1" tag="b" type="danger">
@@ -48,12 +48,12 @@
       </el-popover>
     </el-col>
   </el-row>
-  <el-row align="middle" :gutter=20 style="margin-bottom: 20px" >
+  <el-row align="middle" :gutter=20 style="margin-bottom: 20px">
     <el-col :span="8">
       <el-input
-        readonly="readonly"
-        v-model="startTimeStr"
-        placeholder="本轮开始时间" >
+          readonly="readonly"
+          v-model="startTimeStr"
+          placeholder="本轮开始时间">
         <template #prepend>本轮开始时间</template>
       </el-input>
     </el-col>
@@ -65,23 +65,23 @@
     </el-col>
     <el-col :span="8">
       <el-input
-        v-model="interval"
-        type="number"
-        step="500"
-        max="100000"
-        min="1000"
-        placeholder="轮询时间">
+          v-model="interval"
+          type="number"
+          step="500"
+          max="100000"
+          min="1000"
+          placeholder="轮询时间">
         <template #prepend>轮询时间</template>
         <template #append>ms</template>
       </el-input>
     </el-col>
   </el-row>
   <el-card
-    class="lesson-card"
-    v-bind:key="course.ID"
-    v-for="course in course_list"
-    body-style="padding: 0 20px"
-    style="margin-bottom: 5px"
+      class="lesson-card"
+      v-bind:key="course.ID"
+      v-for="course in course_list"
+      body-style="padding: 0 20px"
+      style="margin-bottom: 5px"
   >
     <el-collapse>
       <el-collapse-item>
@@ -100,16 +100,16 @@
               {{ course.remain + "/" + course.capacity }}
             </el-text>
             <el-text v-if="canDoSubmit(course.ID)" type="info">
-              {{`已尝试${course.triedTimes}次`}}
+              {{ `已尝试${course.triedTimes}次` }}
             </el-text>
             <el-text v-if="canDoSubmit(course.ID)" type="primary">
-              {{`状态:${course.status}`}}
+              {{ `状态:${course.status}` }}
             </el-text>
             <el-popover
-              placement="right"
-              :width="200"
-              trigger="hover"
-              content="该课程非正选阶段选中"
+                placement="right"
+                :width="200"
+                trigger="hover"
+                content="该课程非正选阶段选中"
             >
               <template #reference>
                 <el-text v-if="!canDoSubmit(course.ID)">
@@ -120,15 +120,15 @@
                 </el-text>
               </template>
               <el-space direction="vertical" alignment="flex-start">
-              <el-text type="warning">
-                该课程非正选阶段选择
-              </el-text>
-              <el-text type="warning">
-                无法加入选课列表
-              </el-text>
-              <el-button :disabled="course_select_status !== 0" @click="convert_course_to_official_state(course.ID)">
-                转换为正选课程
-              </el-button>
+                <el-text type="warning">
+                  该课程非正选阶段选择
+                </el-text>
+                <el-text type="warning">
+                  无法加入选课列表
+                </el-text>
+                <el-button :disabled="course_select_status !== 0" @click="convert_course_to_official_state(course.ID)">
+                  转换为正选课程
+                </el-button>
               </el-space>
             </el-popover>
 
@@ -140,84 +140,85 @@
         </template>
         <el-descriptions :column="3" border>
           <el-descriptions-item
-            label="课程号"
-            label-align="right"
-            align="center"
-            label-class-name="my-label"
-            class-name="my-content"
+              label="课程号"
+              label-align="right"
+              align="center"
+              label-class-name="my-label"
+              class-name="my-content"
           >{{ course.number }}
           </el-descriptions-item>
           <el-descriptions-item
-            label="授课教师"
-            label-align="right"
-            align="center"
+              label="授课教师"
+              label-align="right"
+              align="center"
           >{{ course.teacher }}
           </el-descriptions-item>
           <el-descriptions-item
-            label="学分"
-            label-align="right"
-            align="center"
-          >{{course.score}}
+              label="学分"
+              label-align="right"
+              align="center"
+          >{{ course.score }}
           </el-descriptions-item>
           <el-descriptions-item
-            label="校区"
-            label-align="right"
-            align="center"
+              label="校区"
+              label-align="right"
+              align="center"
           >{{ course.campus }}
           </el-descriptions-item>
           <el-descriptions-item
-            label="教室"
-            label-align="right"
-            align="center">
+              label="教室"
+              label-align="right"
+              align="center">
             {{ course.building + " " + course.classroom }}
           </el-descriptions-item>
           <el-descriptions-item
-            label="上课时间"
-            label-align="right"
-            align="center">
-            {{ "星期" + integer_to_zh_cn[course.weekday] + "  " + course.startSection + "-" + (Number.parseInt(course.startSection) + Number.parseInt(course.duringSection))
+              label="上课时间"
+              label-align="right"
+              align="center">
+            {{
+              "星期" + integer_to_zh_cn[course.weekday] + "  " + course.startSection + "-" + (Number.parseInt(course.startSection) + Number.parseInt(course.duringSection))
             }}
           </el-descriptions-item>
           <el-descriptions-item
-            label="学生数"
-            label-align="right"
-            align="center"
+              label="学生数"
+              label-align="right"
+              align="center"
           > {{ course.capacity - course.remain }}
           </el-descriptions-item>
           <el-descriptions-item
-            label="课容量"
-            label-align="right"
-            align="center"
+              label="课容量"
+              label-align="right"
+              align="center"
           > {{ course.capacity }}
           </el-descriptions-item>
           <el-descriptions-item
-            label="课程类别"
-            label-align="right"
-            align="center"
-          > {{course.courseType}}
+              label="课程类别"
+              label-align="right"
+              align="center"
+          > {{ course.courseType }}
           </el-descriptions-item>
           <el-descriptions-item
-            label="期末"
-            label-align="right"
-            align="center"
-          > {{course.finalExamineType}}
+              label="期末"
+              label-align="right"
+              align="center"
+          > {{ course.finalExamineType }}
           </el-descriptions-item>
           <el-descriptions-item
-            label="开设学院"
-            label-align="right"
-            align="center"
-          > {{course.teachFaculty}}
+              label="开设学院"
+              label-align="right"
+              align="center"
+          > {{ course.teachFaculty }}
           </el-descriptions-item>
           <el-descriptions-item
-            label="备注"
-            label-align="right"
-            align="center"
+              label="备注"
+              label-align="right"
+              align="center"
           >
           </el-descriptions-item>
           <el-descriptions-item
-            label="操作日志"
-            label-align="right"
-            align="center"
+              label="操作日志"
+              label-align="right"
+              align="center"
           >
             <el-scrollbar max-height="3em">
               <div v-for="log in course.eventlog" :key="log">{{ log }}</div>
@@ -228,48 +229,51 @@
       </el-collapse-item>
     </el-collapse>
   </el-card>
-<!--  <ul>-->
-<!--    <li v-for="course in course_list" :key="course.ID">-->
-<!--      <div>-->
-<!--        <div>-->
-<!--          <h3>{{ course.name }}</h3>-->
-<!--          <p>{{ course.number }}-{{ course.seqNumber }}</p>-->
-<!--          <p>{{ course.teacher }}</p>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <br>-->
-<!--          <p>{{ course.building + " " + course.classroom }}</p>-->
-<!--          <p>-->
-<!--            {{ "星期" + course.weekday + "  " + course.startSection + "到" + (Number.parseInt(course.startSection) + Number.parseInt(course.duringSection)) + "节"-->
-<!--            }}</p>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <br>-->
-<!--          <p>总容量: {{ course.capacity }}</p>-->
-<!--          <p>课余量: {{ course.remain }}</p>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <br>-->
-<!--          <p>上次轮询用时: {{ course.lastQueryTimeElapse }}ms</p>-->
-<!--          <p>状态: {{ course.status }}</p>-->
-<!--          <p>重试次数: {{ course.triedTimes }}</p>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="log">-->
-<!--        <div v-for="log in course.eventlog" :key="log">{{ log }}</div>-->
-<!--      </div>-->
-<!--    </li>-->
-<!--  </ul>-->
+  <!--  <ul>-->
+  <!--    <li v-for="course in course_list" :key="course.ID">-->
+  <!--      <div>-->
+  <!--        <div>-->
+  <!--          <h3>{{ course.name }}</h3>-->
+  <!--          <p>{{ course.number }}-{{ course.seqNumber }}</p>-->
+  <!--          <p>{{ course.teacher }}</p>-->
+  <!--        </div>-->
+  <!--        <div>-->
+  <!--          <br>-->
+  <!--          <p>{{ course.building + " " + course.classroom }}</p>-->
+  <!--          <p>-->
+  <!--            {{ "星期" + course.weekday + "  " + course.startSection + "到" + (Number.parseInt(course.startSection) + Number.parseInt(course.duringSection)) + "节"-->
+  <!--            }}</p>-->
+  <!--        </div>-->
+  <!--        <div>-->
+  <!--          <br>-->
+  <!--          <p>总容量: {{ course.capacity }}</p>-->
+  <!--          <p>课余量: {{ course.remain }}</p>-->
+  <!--        </div>-->
+  <!--        <div>-->
+  <!--          <br>-->
+  <!--          <p>上次轮询用时: {{ course.lastQueryTimeElapse }}ms</p>-->
+  <!--          <p>状态: {{ course.status }}</p>-->
+  <!--          <p>重试次数: {{ course.triedTimes }}</p>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="log">-->
+  <!--        <div v-for="log in course.eventlog" :key="log">{{ log }}</div>-->
+  <!--      </div>-->
+  <!--    </li>-->
+  <!--  </ul>-->
 </template>
 
 <script>
-import{
+import {
   Warning,
-}from "@element-plus/icons-vue";
+} from "@element-plus/icons-vue";
 import {useCourseStore} from "../store/courseStore.js";
+import CourseQuery from "../js/queryCourse.js";
+import {isFormalSelectionTime} from "../js/urpLogin.js";
+
 export default {
   name: "CourseScheduleView",
-  components:{
+  components: {
     Warning
   },
   data() {
@@ -295,6 +299,7 @@ export default {
       },
       Warning: Warning,
       course_select_status: 0,
+      query_worker: new CourseQuery()
     };
   },
   mounted() {
@@ -335,47 +340,55 @@ export default {
       }, this.interval);
     },
     refresh_pending_list() {
-      // window.ipc.invoke("modify_pending_list", JSON.stringify({
-      //   op: "get list"
-      // })).then(res => {
-      //   let json = JSON.parse(res);
-      //   console.log(json)
-      //   this.course_list = json;
-      // });
       const ss = useCourseStore()
-      this.course_list =  ss.scheduleListAll;
+      this.course_list = ss.scheduleListAll;
       console.log(this.course_list);
     },
-    canDoSubmit(course_ID){
+    canDoSubmit(course_ID) {
       /* 判断课程是否正选加入 */
       return !course_ID.includes("-")
     },
-    refresh_course_select_status(){
+    async refresh_course_select_status() {
+      isFormalSelectionTime().then(res =>{
+        this.course_select_status = res.status;
+      })
       // window.ipc.invoke("is_official_course_selection_time").then(res=>{
       //   res = JSON.parse(res)
       //   this.course_select_status = res.status;
       //   return res.status
       // });
+
     },
-    remove_course_from_list(uid){
-      // window.ipc.invoke("modify_pending_list", JSON.stringify({
-      //   op: "rm",
-      //   course_ID: uid
-      // }));
-      // this.refresh_pending_list();
+    remove_course_from_list(uid) {
+      const ss = useCourseStore()
+      ss.removeCourseFromSchedule(uid);
+      this.course_list = ss.scheduleListAll;
     },
-    convert_course_to_official_state(uid){
-    //   window.ipc.invoke("add_converted_course_without_cache", JSON.stringify({ID:uid}))
-    //   window.ipc.invoke("modify_selection_list", JSON.stringify({
-    //     op: "rm",
-    //     course_ID: uid
-    //   }));
-    //   this.refresh_pending_list();
+    convert_course_to_official_state(uid) {
+      const ss = useCourseStore()
+      let match = ss.getCourseByUID(uid);
+      this.query_worker.searchCourse({
+        name: match.name || "",
+        teacher: match.teacher || "",
+        number: match.number || "",
+      }).then(
+          courseList => {
+            ss.removeCourseFromSchedule(uid);
+            ss.addCourseToSchedule(courseList[0])
+          }
+      )
+    },
+    convert_all_course_to_formal_state() {
+      const ss = useCourseStore();
+      for (let course of ss.scheduleListAll) {
+        if (this.canDoSubmit(course.ID)) {
+          continue;
+        }
+        this.convert_course_to_official_state(course.ID);
+      }
     }
   },
-  computed:{
-
-  }
+  computed: {}
 };
 </script>
 

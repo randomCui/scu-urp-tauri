@@ -24,6 +24,11 @@ export const useCourseStore = defineStore('scu-urp-tauri-courseStore', {
                 set.add(course.ID);
                 return set;
             }, new Set())
+        },
+        getCourseByUID(uid){
+            return this.scheduleListAll.find(value => {
+                return value.ID === uid;
+            })
         }
     },
 })
