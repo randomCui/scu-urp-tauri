@@ -21,8 +21,17 @@
         "request": true,
         "scope": [
           "http://127.0.0.1:4523/m1/2497359-0-default/*",
-          "http://192.168.31.196:4523/*"
+          "http://192.168.31.196:4523/*",
+          "http://zhjwjs.scu.edu.cn/*",
+          "http://202.115.47.141/*"
         ]
+      },
+      "path": {
+        "all": true
+      },
+      "fs": {
+        "all": true,
+        "scope": ["$RESOURCE/*"]
       }
     },
     "bundle": {
@@ -48,7 +57,7 @@
         "fullscreen": false,
         "resizable": true,
         "title": "scu_urp_tauri",
-        "width": 800,
+        "width": 960,
         "height": 600
       }
     ]
