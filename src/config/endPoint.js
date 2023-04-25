@@ -1,14 +1,14 @@
-// export const domain = "http://202.115.47.141:4523/m1/2497359-0-default";
+// export const domain = "http://202.115.47.141";
 // export const domain = "http://192.168.31.196:4523/m1/2497359-0-default";
 export const domain = "http://127.0.0.1:4523/m1/2497359-0-default";
 // 教务系统登录入口
-export const jwc_entry_url = domain + "/login";
+export const jwc_entry_url = 'http://202.115.47.141' + "/login";
 // 教务系统验证码获取
-export const jwc_captcha_url = domain + "/img/captcha.jpg";
+export const jwc_captcha_url = 'http://202.115.47.141' + "/img/captcha.jpg";
 // 教务系统登录验证
-export const jwc_jc = domain + "/j_spring_security_check";
+export const jwc_jc = 'http://202.115.47.141' + "/j_spring_security_check";
 // 教务系统首页
-export const jwc_home = domain;
+export const jwc_home = 'http://202.115.47.141';
 // 教务系统自由选课提交接口
 export const course_select_submit_url = domain + "/student/courseSelect/selectCourse/checkInputCodeAndSubmit";
 // 教务系统测试提交url
