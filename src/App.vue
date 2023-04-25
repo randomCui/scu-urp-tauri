@@ -43,6 +43,17 @@ export default {
   color: #2c3e50;
 }
 
+html,
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar {
+  display: none;
+}
+
 nav {
   padding: 30px;
 
